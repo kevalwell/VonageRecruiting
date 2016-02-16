@@ -1,0 +1,110 @@
+package parseInt;
+
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import java.awt.BorderLayout;
+import javax.swing.SwingConstants;
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
+import java.awt.Font;
+import javax.swing.JButton;
+import javax.swing.JSeparator;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.SystemColor;
+
+public class parseInt {
+
+	private JFrame frame;
+	private JTextField textField;
+	JLabel lblNewLabel = new JLabel("");
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					parseInt window = new parseInt();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public parseInt() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.getContentPane().setBackground(SystemColor.textHighlight);
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		JTextArea txtrThisProgramWill = new JTextArea();
+		txtrThisProgramWill.setBackground(SystemColor.textHighlight);
+		txtrThisProgramWill.setWrapStyleWord(true);
+		txtrThisProgramWill.setEditable(false);
+		txtrThisProgramWill.setFont(new Font("Optima", Font.BOLD, 14));
+		txtrThisProgramWill.setText("This program will parse a string and extract a meaningful\n integer out of it, if it is to be found. If not, the program\n will return NaN.");
+		txtrThisProgramWill.setBounds(46, 19, 356, 55);
+		frame.getContentPane().add(txtrThisProgramWill);
+		
+		JLabel lblEnterStringHere = new JLabel("Enter String Here:");
+		lblEnterStringHere.setFont(new Font("Optima", Font.BOLD, 14));
+		lblEnterStringHere.setBounds(46, 86, 128, 16);
+		frame.getContentPane().add(lblEnterStringHere);
+		
+		textField = new JTextField();
+		textField.setBounds(172, 79, 226, 28);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
+		
+		JLabel lblResult = new JLabel("Result:");
+		lblResult.setFont(new Font("Optima", Font.BOLD, 14));
+		lblResult.setBounds(46, 221, 128, 16);
+		frame.getContentPane().add(lblResult);
+		
+		JSeparator separator = new JSeparator();
+		separator.setForeground(SystemColor.controlHighlight);
+		separator.setBounds(42, 190, 360, 12);
+		frame.getContentPane().add(separator);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setForeground(SystemColor.controlHighlight);
+		separator_1.setBounds(46, 114, 360, 12);
+		frame.getContentPane().add(separator_1);
+		lblNewLabel.setBackground(Color.BLACK);
+		
+		
+		lblNewLabel.setBounds(172, 220, 226, 16);
+		frame.getContentPane().add(lblNewLabel);
+		
+		JButton btnParseint = new JButton("parseInt()");
+		btnParseint.setBackground(new Color(0, 255, 255));
+		btnParseint.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				lblNewLabel.setText(textField.getText());
+				
+			}
+		});
+		btnParseint.setBounds(46, 133, 352, 37);
+		frame.getContentPane().add(btnParseint);
+		
+
+	}
+}
