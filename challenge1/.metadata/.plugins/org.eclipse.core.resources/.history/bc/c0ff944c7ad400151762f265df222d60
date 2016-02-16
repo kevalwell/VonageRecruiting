@@ -27,7 +27,6 @@ public class parseInt {
 	private JFrame frame;
 	private JLabel resultLabel = new JLabel("");
 	private JTextArea textField = new JTextArea();
-	private final int RADIX = 10;
 
 	
 	//Constructor
@@ -50,7 +49,8 @@ public class parseInt {
 	{
 		int number = 0;
 		
-		//Handling case where text is empty or null
+		JOptionPane.showMessageDialog(null, text.length());
+
 		if (text == null || text.isEmpty())
 		{
 			JOptionPane.showMessageDialog(null, "Cannot take an empty string!");
@@ -59,20 +59,16 @@ public class parseInt {
 		
 		int length = text.length();
 		
-		//Initial DFA state is BEGIN
 		stateDFA state = stateDFA.BEGIN;
 		
-		//Loop along entire length of the string
 		for (int i = 0; i < length; i++)
 		{
 			char c = text.charAt(i);
 			
-			//If current character is a numerical digit, update
-			//number with correct radix (decimal in our case)
 			if (Character.isDigit(c))
 			{
-				number *= RADIX;
-				number += Character.digit(c, RADIX);
+				number *= 10;
+				number += Character.digit(c, 10);
 			}
 			switch (state)
 			{
@@ -95,7 +91,6 @@ public class parseInt {
 		else return number;
 	}
 	
-	//Handle DFA state BEGIN
 	private stateDFA handleBegin(char c)
 	{
 		if (c == ' ' || c == '\n' || c == '\t')
@@ -109,7 +104,6 @@ public class parseInt {
 		else return stateDFA.REJECT;
 	}
 	
-	//Handle DFA state INTEGER
 	private stateDFA handleInteger(char c)
 	{
 		if (c == ' ' || c == '\n' || c == '\t')
@@ -123,7 +117,6 @@ public class parseInt {
 		else return stateDFA.REJECT;
 	}
 	
-	//Handle DFA state END
 	private stateDFA handleEnd(char c)
 	{
 		if (c == ' ' || c == '\n' || c == '\t')
